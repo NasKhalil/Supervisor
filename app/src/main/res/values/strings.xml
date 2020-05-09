@@ -8,4 +8,5 @@
     <string name="log_out">Logout</string>
     <string name="sign_in">Sign In</string>
     <string name="title">Manager check list</string>
+    <string name="sign_in_string">If you don\'t have an account Sign in</string>
 </resources>

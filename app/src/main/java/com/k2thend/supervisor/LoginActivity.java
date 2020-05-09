@@ -1,51 +1,145 @@
 package com.k2thend.supervisor;
 
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.DialogInterface;
+import android.content.Intent;
+import android.nfc.Tag;
 import android.os.Bundle;
+import android.text.TextUtils;
+import android.util.Log;
+import android.util.Patterns;
 import android.view.View;
-import android.widget.Button;
-import android.widget.EditText;
 
-import java.util.regex.Pattern;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
+import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.k2thend.supervisor.databinding.ActivityLoginBinding;
 
-public class LoginActivity extends AppCompatActivity implements View.OnClickListener {
-
-    // declaration des variables
-
-    private EditText email;
-    private EditText password;
-    private Button login;
+public class LoginActivity extends AppCompatActivity {
+    private ActivityLoginBinding binding;
+    private FirebaseAuth mAuth; // declare an instance of FirebaseAuth
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
 
-        email = findViewById(R.id.email);
-        password = findViewById(R.id.password);
-        login = findViewById(R.id.login);
+        binding = ActivityLoginBinding.inflate(getLayoutInflater());
+        View view = binding.getRoot();
+        setContentView(view);
 
-        login.setOnClickListener(this);
+        mAuth = FirebaseAuth.getInstance(); // initialize the Firebase instance
+
+        binding.login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginActivity.this.Login();
+            }
+        });
+
+        binding.signInIntent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                LoginActivity.this.startActivity(new Intent(LoginActivity.this, SubscribeActivity.class));
+            }
+        });
+
+
     }
 
     @Override
-    public void onClick(View v) {
-      String emailString = email.getText().toString();
-      String passwordString = password.getText().toString();
+    public void onBackPressed() {
+         new MaterialAlertDialogBuilder(this)
+                 .setIcon(android.R.drawable.ic_dialog_alert)
+                 .setTitle("EXIT")
+                .setMessage("Are you sure you want to close application")
+                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
+                {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        finish();
+                    }
 
-      // regex
-        // Pattern namePattern = Pattern.compile("[a-zA-Z\\s]*");
-        Pattern emailPattern =Pattern.compile("^[A-Za-z0-9._-]+@+[A-Za-z]+.+[com]");
-        // test validation
+                })
+                .setNegativeButton("No", null)
+                .show();
+    }
 
+    private void Login (){
+        if (!isEmpty()) {
+            String mail = binding.email.getText().toString();
+            String password = binding.password.getText().toString();
+            if (validEmail() && validPassword()) {
+                mAuth.signInWithEmailAndPassword(mail, password)
+                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
+                            @Override
+                            public void onComplete(@NonNull Task<AuthResult> task) {
+                                if (task.isSuccessful()){
+                                    startActivity( new Intent(LoginActivity.this , MainActivity.class));
+                                    finish();
+                                }
+                                else
+                                {
+                                    Snackbar.make(binding.getRoot(), task.getException().getMessage(),Snackbar.LENGTH_LONG).show();
+                                }
+                            }
+                        });
+            }
 
-        if(!emailPattern.matcher(emailString).matches()){
-            email.setError("Invalid email");
         }
 
-        if(passwordString.length() < 5){
-            password.setError("Password must be 6 caracters at least");
+
+/*
+// TODO: FireBase Login
+                startActivity( new Intent(LoginActivity.this , MainActivity.class));
+                finish();
+            }
         }
+
+ */
 
     }
+
+    private boolean isEmpty() {
+        boolean empty = false ;
+
+        if (TextUtils.isEmpty(binding.email.getText()))
+        {
+            empty = true ;
+            binding.email.setError("Empty Field");
+        }
+        if ((TextUtils.isEmpty(binding.password.getText())))
+        {
+            empty = true ;
+            binding.password.setError("Empty Field");
+        }
+        return  empty ;
+    }
+    private boolean validEmail(){
+        boolean valid = true ;
+        if (!Patterns.EMAIL_ADDRESS.matcher(binding.email.getText()).matches())
+        {
+            valid = false ;
+            binding.email.setError("Enter a valid Email");
+        }
+
+        return valid ;
+    }
+    private boolean validPassword (){
+        boolean valide = true ;
+        if (binding.password.getText().length() <6)
+        {
+            valide = false ;
+            binding.password.setError("6 caracters minimun ");
+        }
+        return  valide ;
+    }
+
+
 }

@@ -11,14 +11,19 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
     <Button
+        android:id="@+id/logout"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/log_out"
         android:layout_gravity="right"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
         />
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:layout_marginBottom="16dp"
         android:text="@string/title"
         android:textSize="24sp"
         android:layout_gravity="center"/>
@@ -29,6 +34,7 @@
         android:orientation="horizontal"
         android:layout_marginTop="16dp"
         android:layout_marginBottom="16dp"
+        android:padding="8dp"
         >
         <TextView
             android:layout_width="wrap_content"
@@ -36,18 +42,41 @@
             android:text="question"
             android:layout_weight="3"
             />
-        <RadioButton
+
+        <RadioGroup
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:hint="YES"
-            />
-        <RadioButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:hint="NO"
-            />
+            android:orientation="horizontal"
+            >
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="YES"
+                />
+            <RadioButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:hint="NO"
+                />
+        </RadioGroup>
 
     </LinearLayout>
+
+    <EditText
+        android:id="@+id/textArea_information"
+        android:hint="comments"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:gravity="top|left"
+        android:inputType="textMultiLine"
+        android:overScrollMode="always"
+        android:scrollbarStyle="insideInset"
+        android:scrollbars="vertical"
+        android:lines="6"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:scrollHorizontally="false" />
+
 </LinearLayout>
 
 </ScrollView>

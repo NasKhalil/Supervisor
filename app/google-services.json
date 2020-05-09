@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "32973740925",
+    "firebase_url": "https://supervisor-c6678.firebaseio.com",
+    "project_id": "supervisor-c6678",
+    "storage_bucket": "supervisor-c6678.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:32973740925:android:cc87760d89bfdc18b88a14",
+        "android_client_info": {
+          "package_name": "com.k2thend.supervisor"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "32973740925-l0impvpih02adb9uab145u64819msvhd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBE82YC6s0Myl7nZylBTihKqPiOkeeydJE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "32973740925-l0impvpih02adb9uab145u64819msvhd.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
