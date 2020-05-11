@@ -333,6 +333,15 @@
             android:layout_margin="6dp"/>
     </LinearLayout>
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/second_title"
+        android:textSize="24sp"
+        android:layout_gravity="center"
+        android:textColor="@color/red"
+        android:layout_margin="24dp"/>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
