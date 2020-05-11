@@ -73,12 +73,11 @@ public class SubscribeActivity extends AppCompatActivity {
                                     }else
                                     {
                                         Snackbar.make(binding.getRoot(), task.getException().getMessage(), Snackbar.LENGTH_LONG).show();
-
                                     }
                                 }
                             });
                         } else {
-                            binding.progressBar.setVisibility(View.GONE);
+                            binding.progressBar.setVisibility(View.VISIBLE);
                             Snackbar.make(binding.getRoot(), task.getException().getMessage(), Snackbar.LENGTH_LONG).show();
                         }
                     }

@@ -7,6 +7,17 @@
     <string name="log_in">Login</string>
     <string name="log_out">Logout</string>
     <string name="sign_in">Sign In</string>
-    <string name="title">Manager check list</string>
     <string name="sign_in_string">If you don\'t have an account Sign in</string>
+    <string name="main_title">Duty Manager Check List</string>
+    <string name="title_one">Food Duty Manager</string>
+    <string name="title_two">Non Food Duty Manager</string>
+    <string name="title_three">Food Duty Semi Manager</string>
+    <string name="second_title">Cleaning Remarks Noon</string>
+    <string name="present_lunch">Present Lunch Time</string>
+    <string name="present_Evening">Present Evening</string>
+    <string name="checkout_area">Checkout Area</string>
+    <string name="food_area">Food Area</string>
+    <string name="non_food_area">Non Food Area</string>
+    <string name="Pres_cleaning_sup">Presence of Cleaning Supervisor</string>
+    <string name="numb_cleaning_staff">Number of Cleaning Staff</string>
 </resources>
