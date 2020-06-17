@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.k2thend.supervisor.utils.Utils;
+
 public class SplashScreenActivity extends AppCompatActivity {
 
     public static int TIME_OUT = 3500;
@@ -19,7 +21,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashScreenActivity.this, LoginActivity.class);
+                Intent intent = new Intent(SplashScreenActivity.this, DropActivity.class);
                 startActivity(intent);
                 finish();
             }

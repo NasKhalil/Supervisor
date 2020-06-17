@@ -8,6 +8,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.RadioGroup;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -26,6 +27,7 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.k2thend.supervisor.databinding.ActivityMainBinding;
 import com.k2thend.supervisor.model.Data;
 import com.k2thend.supervisor.model.User;
+import com.k2thend.supervisor.ui.dashboard.DashboardFragment;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
@@ -45,33 +47,22 @@ public class MainActivity extends AppCompatActivity {
         getData();
 
 
-        binding.logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAuth.getInstance().signOut();
-                startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                finish();
-            }
+        binding.logout.setOnClickListener(v -> {
+            mAuth.getInstance().signOut();
+            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+            finish();
         });
 
-        binding.send.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                sendData();
-            }
-        });
+        binding.send.setOnClickListener(v -> sendData());
 
-        binding.save.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                saveData();
-            }
-        });
+       // binding.save.setOnClickListener(v -> saveData());
+
 
 
 
 
     }
+
 
     @Override
     public void onBackPressed() {
@@ -113,19 +104,18 @@ public class MainActivity extends AppCompatActivity {
     private void sendData(){
 
         mData.setQuestion("hello");
-        mReference.child("data").child(mAuth.getUid()).setValue(mData).addOnCompleteListener(new OnCompleteListener<Void>() {
-            @Override
-            public void onComplete(@NonNull Task<Void> task) {
-                if (task.isSuccessful())
-                {
-                    Toast.makeText(MainActivity.this, "Data sent", Toast.LENGTH_SHORT).show();
-                }else
-                {
-                    Snackbar.make(binding.getRoot(), task.getException().getMessage(), Snackbar.LENGTH_LONG).show();
-                }
+        mReference.child("data").child(mAuth.getUid()).setValue(mData).addOnCompleteListener(task -> {
+            if (task.isSuccessful())
+            {
+                Toast.makeText(MainActivity.this, "Data sent", Toast.LENGTH_SHORT).show();
+            }else
+            {
+                Snackbar.make(binding.getRoot(), task.getException().getMessage(), Snackbar.LENGTH_LONG).show();
             }
         });
     }
+
+
 
     private void initFirebase() {
         mAuth = FirebaseAuth.getInstance(); // initialize the Firebase instance

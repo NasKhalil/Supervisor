@@ -9,20 +9,35 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".SubscribeActivity"
-            android:screenOrientation="locked"></activity>
-        <activity android:name=".LoginActivity"
-            android:screenOrientation="locked"></activity>
-        <activity android:name=".SplashScreenActivity"
-            android:screenOrientation="locked">
+        <activity android:name=".DropActivity"></activity>
+        <activity android:name=".TestActivity" />
+        <activity android:name=".utils.Utils" />
+        <activity
+            android:name=".NavigationActivity"
+            android:label="@string/title_activity_navigation" />
+        <activity
+            android:name=".SubscribeActivity"
+            android:label="Subscribe"
+            android:screenOrientation="locked"
+            android:theme="@style/AppThemeSplash" />
+        <activity
+            android:name=".LoginActivity"
+            android:label="Login"
+            android:screenOrientation="locked"
+            android:theme="@style/AppThemeSplash" />
+        <activity
+            android:name=".SplashScreenActivity"
+            android:screenOrientation="locked"
+            android:theme="@style/AppThemeSplash">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".MainActivity"
-            android:screenOrientation="locked"></activity>
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="locked" />
     </application>
 
 </manifest>

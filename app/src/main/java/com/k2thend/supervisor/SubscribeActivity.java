@@ -68,7 +68,7 @@ public class SubscribeActivity extends AppCompatActivity {
                                     if(task.isSuccessful())
                                     {
                                         binding.progressBar.setVisibility(View.GONE);
-                                        startActivity(new Intent(SubscribeActivity.this, MainActivity.class));
+                                        startActivity(new Intent(SubscribeActivity.this, NavigationActivity.class));
                                         finish();
                                     }else
                                     {
@@ -77,7 +77,7 @@ public class SubscribeActivity extends AppCompatActivity {
                                 }
                             });
                         } else {
-                            binding.progressBar.setVisibility(View.VISIBLE);
+                            binding.progressBar.setVisibility(View.GONE);
                             Snackbar.make(binding.getRoot(), task.getException().getMessage(), Snackbar.LENGTH_LONG).show();
                         }
                     }

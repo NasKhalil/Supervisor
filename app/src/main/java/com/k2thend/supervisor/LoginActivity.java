@@ -36,19 +36,9 @@ public class LoginActivity extends AppCompatActivity {
 
         mAuth = FirebaseAuth.getInstance(); // initialize the Firebase instance
 
-        binding.login.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LoginActivity.this.Login();
-            }
-        });
+        binding.login.setOnClickListener(v -> LoginActivity.this.Login());
 
-        binding.signInIntent.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                LoginActivity.this.startActivity(new Intent(LoginActivity.this, SubscribeActivity.class));
-            }
-        });
+        binding.signInIntent.setOnClickListener(v -> LoginActivity.this.startActivity(new Intent(LoginActivity.this, SubscribeActivity.class)));
 
 
     }
@@ -59,14 +49,7 @@ public class LoginActivity extends AppCompatActivity {
                  .setIcon(android.R.drawable.ic_dialog_alert)
                  .setTitle("EXIT")
                 .setMessage("Are you sure you want to close application")
-                .setPositiveButton("Yes", new DialogInterface.OnClickListener()
-                {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        finish();
-                    }
-
-                })
+                .setPositiveButton("Yes", (dialog, which) -> finish())
                 .setNegativeButton("No", null)
                 .show();
     }
@@ -77,17 +60,14 @@ public class LoginActivity extends AppCompatActivity {
             String password = binding.password.getText().toString();
             if (validEmail() && validPassword()) {
                 mAuth.signInWithEmailAndPassword(mail, password)
-                        .addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
-                            @Override
-                            public void onComplete(@NonNull Task<AuthResult> task) {
-                                if (task.isSuccessful()){
-                                    startActivity( new Intent(LoginActivity.this , MainActivity.class));
-                                    finish();
-                                }
-                                else
-                                {
-                                    Snackbar.make(binding.getRoot(), task.getException().getMessage(),Snackbar.LENGTH_LONG).show();
-                                }
+                        .addOnCompleteListener(this, task -> {
+                            if (task.isSuccessful()){
+                                startActivity( new Intent(LoginActivity.this , NavigationActivity.class));
+                                finish();
+                            }
+                            else
+                            {
+                                Snackbar.make(binding.getRoot(), task.getException().getMessage(),Snackbar.LENGTH_LONG).show();
                             }
                         });
             }

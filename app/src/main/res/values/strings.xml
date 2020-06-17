@@ -20,4 +20,14 @@
     <string name="non_food_area">Non Food Area</string>
     <string name="Pres_cleaning_sup">Presence of Cleaning Supervisor</string>
     <string name="numb_cleaning_staff">Number of Cleaning Staff</string>
+    <string name="title_activity_navigation">NavigationActivity</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Dashboard</string>
+    <string name="title_notifications">Notifications</string>
+
+    <string-array name="input_type">
+        <item>EditText</item>
+        <item>RadioButton</item>
+        <item>Switch</item>
+    </string-array>
 </resources>
