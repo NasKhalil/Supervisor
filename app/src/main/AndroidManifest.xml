@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".DropActivity"></activity>
+        <activity android:name=".test.EmailActivity"></activity>
+        <activity android:name=".DropActivity" />
         <activity android:name=".TestActivity" />
         <activity android:name=".utils.Utils" />
         <activity

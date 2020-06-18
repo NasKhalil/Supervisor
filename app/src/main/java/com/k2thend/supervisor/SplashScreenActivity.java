@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import com.k2thend.supervisor.test.EmailActivity;
 import com.k2thend.supervisor.utils.Utils;
 
 public class SplashScreenActivity extends AppCompatActivity {
@@ -21,7 +22,7 @@ public class SplashScreenActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                Intent intent = new Intent(SplashScreenActivity.this, DropActivity.class);
+                Intent intent = new Intent(SplashScreenActivity.this, NavigationActivity.class);
                 startActivity(intent);
                 finish();
             }
