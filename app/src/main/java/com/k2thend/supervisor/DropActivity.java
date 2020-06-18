@@ -12,6 +12,7 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.k2thend.supervisor.databinding.ActivityDropBinding;
 
@@ -38,12 +39,12 @@ public class DropActivity extends AppCompatActivity {
 
     public void showDialog(Activity activity, String msg){
         final Dialog dialog = new Dialog(activity);
-        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
+        //dialog.requestWindowFeature(Window.FEATURE_NO_TITLE);
         dialog.setCancelable(false);
         dialog.setContentView(R.layout.custom_dialog_box);
         dialog.getWindow().setBackgroundDrawable(new ColorDrawable(android.graphics.Color.TRANSPARENT));
 
-        TextView text = (TextView) dialog.findViewById(R.id.txt_file_path);
+        TextView text =  dialog.findViewById(R.id.txt_file_path);
         text.setText(msg);
 
         String[] utils = new String[] {"EditText", "Button", "FAB", "RadioButton"};
@@ -57,12 +58,12 @@ public class DropActivity extends AppCompatActivity {
         AutoCompleteTextView autoCompleteTextView = (AutoCompleteTextView) dialog.findViewById(R.id.exposed_dropdown);
         autoCompleteTextView.setAdapter(adapter);
 
-        Button dialogBtn_cancel = (Button) dialog.findViewById(R.id.btn_cancel);
+        Button dialogBtn_cancel =  dialog.findViewById(R.id.btn_cancel);
         dialogBtn_cancel.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                    Toast.makeText(getApplicationContext(),"Cancel" ,Toast.LENGTH_SHORT).show();
-                dialog.dismiss();
+                   Toast.makeText(getApplicationContext(),autoCompleteTextView.getText() ,Toast.LENGTH_SHORT).show();
+               // dialog.dismiss();
             }
         });
 
