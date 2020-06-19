@@ -50,9 +50,9 @@ public class SubscribeActivity extends AppCompatActivity {
             final String name = binding.name.getText().toString();
             final String mail = binding.email.getText().toString();
             final String pwd = binding.password.getText().toString();
-            String ConfirmPwd = binding.confirmPass.getText().toString();
+            final String phone = binding.phone.getText().toString();
 
-            if (confirmPassword() && validEmail()) {
+            if (validPassword() && validEmail()) {
                 binding.progressBar.setVisibility(View.VISIBLE);
                 mAuth.createUserWithEmailAndPassword(mail, pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
@@ -102,9 +102,9 @@ public class SubscribeActivity extends AppCompatActivity {
             empty = true;
             binding.name.setError("Empty Field");
         }
-        if (TextUtils.isEmpty(binding.confirmPass.getText())) {
+        if (TextUtils.isEmpty(binding.phone.getText())) {
             empty = true;
-            binding.confirmPass.setError("Empty Field");
+            binding.phone.setError("Empty Field");
         }
 
         return empty;
@@ -122,24 +122,14 @@ public class SubscribeActivity extends AppCompatActivity {
 
     private boolean validPassword() {
         boolean valide = true;
-        if (binding.password.getText().length() < 6 && binding.confirmPass.getText().length() < 6) {
+        if (binding.password.getText().length() < 6) {
             valide = false;
             binding.password.setError("minimum 6 caractéres ");
-            binding.confirmPass.setError("minimum 6 caractéres ");
         }
         return valide;
     }
 
-    private boolean confirmPassword() {
-        boolean confirm = true;
 
-        if (!binding.password.getText().toString().equals(binding.confirmPass.getText().toString())) {
-            confirm = false;
-            binding.confirmPass.setError("Password Mismatch");
-        }
-
-        return confirm;
-    }
 
     private void initFirebase() {
         mAuth = FirebaseAuth.getInstance(); // initialize the Firebase instance

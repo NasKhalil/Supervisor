@@ -14,18 +14,20 @@
         android:layout_weight="3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/background_color"
+        android:background="@color/white"
         android:orientation="vertical">
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/log_in"
-            android:textColor="@color/white"
-            android:textSize="32sp"
             android:layout_gravity="center"
+            android:layout_marginTop="64dp"
             android:layout_marginBottom="32dp"
-            android:layout_marginTop="64dp"/>
+            android:fontFamily="sans-serif-thin"
+            android:text="@string/log_in"
+            android:textColor="@color/colorPrimary"
+            android:textSize="36sp"
+            android:textStyle="italic" />
 
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="match_parent"
@@ -86,9 +88,6 @@
     </LinearLayout>
 
 
-    <ImageView
-        android:layout_width="match_parent"
-        android:layout_height="128dp"
-        android:src="@drawable/teaser"/>
+
 
 </LinearLayout>

@@ -5,18 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:background="@color/background_color"
+    android:background="@color/white"
     tools:context=".SubscribeActivity">
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/sign_in"
-        android:textColor="@color/white"
-        android:textSize="32sp"
         android:layout_gravity="center"
+        android:layout_marginTop="32dp"
         android:layout_marginBottom="32dp"
-        android:layout_marginTop="128dp"/>
+        android:fontFamily="sans-serif-thin"
+        android:text="@string/sign_in"
+        android:textColor="@color/colorPrimary"
+        android:textSize="32sp" />
+
+    <ImageView
+        android:id="@+id/imageAdd"
+        android:layout_width="128dp"
+        android:layout_height="128dp"
+        android:layout_gravity="center"
+        tools:srcCompat="@drawable/ic_baseline_add_photo_alternate_24" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
@@ -69,19 +77,21 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="12dp"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        app:endIconMode="password_toggle">
+        app:counterEnabled="true"
+        app:counterMaxLength="8"
+        app:endIconMode="clear_text"
+        app:helperTextEnabled="false">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/confirm_pass"
+            android:id="@+id/phone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Confirm Password"
-            android:inputType="textPassword"
-            />
+            android:hint="Phone"
+            android:inputType="number" />
 
     </com.google.android.material.textfield.TextInputLayout>
 

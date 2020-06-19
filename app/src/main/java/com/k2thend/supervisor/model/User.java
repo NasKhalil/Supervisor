@@ -5,15 +5,19 @@ public class User {
   private String name;
   private String mail;
   private String pwd;
+  private String phone;
+
+
 
     public User() {
     }
 
-    public User(String uid, String name, String mail, String pwd) {
+    public User(String uid, String name, String mail, String pwd, String phone) {
         this.uid = uid;
         this.name = name;
         this.mail = mail;
         this.pwd = pwd;
+        this.phone = phone;
     }
 
     public String getUid() {
@@ -46,5 +50,13 @@ public class User {
 
     public void setPwd(String pwd) {
         this.pwd = pwd;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
     }
 }
