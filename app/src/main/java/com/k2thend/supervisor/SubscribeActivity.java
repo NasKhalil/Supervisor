@@ -1,11 +1,14 @@
 package com.k2thend.supervisor;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.text.TextUtils;
 import android.util.Patterns;
 import android.view.View;
@@ -21,6 +24,8 @@ import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.k2thend.supervisor.databinding.ActivitySubscribeBinding;
 import com.k2thend.supervisor.model.User;
+
+import java.io.IOException;
 
 
 public class SubscribeActivity extends AppCompatActivity {
@@ -98,6 +103,23 @@ public class SubscribeActivity extends AppCompatActivity {
         }
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+        if (requestCode == PICK_IMAGE_REQUEST && resultCode == RESULT_OK
+                && data != null && data.getData() != null) {
+            filePath = data.getData();
+            getContentResolver().takePersistableUriPermission(filePath, Intent.FLAG_GRANT_READ_URI_PERMISSION | Intent.FLAG_GRANT_WRITE_URI_PERMISSION);
+
+            try {
+                Bitmap bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
+                binding.imageAdd.setImageBitmap(bitmap);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+        }
+    }
 
     private boolean isEmpty() {
         boolean empty = false;
@@ -162,11 +184,30 @@ public class SubscribeActivity extends AppCompatActivity {
         child.putFile(filePath).continueWithTask(task -> child.getDownloadUrl()).addOnCompleteListener(task -> {
             if (task.isSuccessful()) {
                 mUser.setUrl(task.getResult().toString());
+                saveUser();
             }
         });
     }
 
+    private void saveUser() {
+        String nom = binding.name.getText().toString();
+        mUser.setName(nom);
+        mUser.setMail(binding.email.getText().toString());
+        mUser.setType(0);
+        mReference.child(mUser.getUid()).setValue(mUser).addOnCompleteListener(task -> {
 
+            if (task.isSuccessful()) {
+                binding.progressBar.setVisibility(View.GONE);
+                startActivity(new Intent(SubscribeActivity.this, NavigationActivity.class));
+                finish();
+            } else {
+                binding.progressBar.setVisibility(View.GONE);
+                Snackbar.make(binding.getRoot(), task.getException().getMessage(), Snackbar.LENGTH_LONG);
+            }
+
+        });
+
+    }
 
         private void initFirebase() {
         mAuth = FirebaseAuth.getInstance(); // initialize the Firebase instance

@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.bumptech.glide.Glide;
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -58,11 +59,10 @@ public class ProfileFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
 
                 User mUser = dataSnapshot.getValue(User.class);
-               // Glide.with(getActivity()).load(mUser.getUrl()).into(binding.addimage);
+                Glide.with(getActivity()).load(mUser.getUrl()).into(binding.profileImage);
                 binding.email.setText(mUser.getMail());
                 binding.name.setText(mUser.getName());
                 binding.phone.setText(mUser.getPhone());
-
                 binding.progressBar2.setVisibility(View.GONE);
 
             }

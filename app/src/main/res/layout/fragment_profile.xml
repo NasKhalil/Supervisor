@@ -21,10 +21,11 @@
          app:layout_constraintTop_toTopOf="parent">
 
           <ImageView
+              android:id="@+id/profileImage"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:scaleType="centerCrop"
-              app:srcCompat="@drawable/hitler" />
+              android:scaleType="center"
+              app:srcCompat="@drawable/ic_baseline_photo_camera_24" />
 
      </com.github.florent37.diagonallayout.DiagonalLayout>
 

@@ -7,19 +7,21 @@ public class User {
   private String pwd;
   private String phone;
   private String Url;
+  private int type = 0;
 
 
 
     public User() {
     }
 
-    public User(String uid, String name, String mail, String pwd, String phone, String Url) {
+    public User(String uid, String name, String mail, String pwd, String phone, String Url, int type) {
         this.uid = uid;
         this.name = name;
         this.mail = mail;
         this.pwd = pwd;
         this.phone = phone;
         this.Url = Url;
+        this.type = type;
     }
 
 
@@ -70,5 +72,13 @@ public class User {
 
     public void setUrl(String url) {
         Url = url;
+    }
+
+    public int getType() {
+        return type;
+    }
+
+    public void setType(int type) {
+        this.type = type;
     }
 }

@@ -59,9 +59,13 @@ public class LoginActivity extends AppCompatActivity {
             String mail = binding.email.getText().toString();
             String password = binding.password.getText().toString();
             if (validEmail() && validPassword()) {
+                binding.progressBar.setVisibility(View.VISIBLE);
+                binding.login.setVisibility(View.GONE);
                 mAuth.signInWithEmailAndPassword(mail, password)
                         .addOnCompleteListener(this, task -> {
                             if (task.isSuccessful()){
+                                binding.progressBar.setVisibility(View.GONE);
+                                binding.login.setVisibility(View.VISIBLE);
                                 startActivity( new Intent(LoginActivity.this , NavigationActivity.class));
                                 finish();
                             }
