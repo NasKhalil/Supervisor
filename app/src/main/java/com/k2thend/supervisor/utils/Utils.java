@@ -2,6 +2,7 @@ package com.k2thend.supervisor.utils;
 
 
 import android.app.Dialog;
+import android.content.Context;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -46,12 +47,11 @@ public class Utils extends AppCompatActivity {
                 dialog.setContentView(autoCompleteTextView);
                 dialog.show();
 
-
             }
         });
     }
 
-    public void button(int color, String text, int size){
+    public View button(Context context, int color, String text, int size){
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
@@ -62,6 +62,8 @@ public class Utils extends AppCompatActivity {
         button.setTextSize(size);
         button.setText("Button created");
         button.setLayoutParams(params);
+
+        return button;
     }
 
 

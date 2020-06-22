@@ -1,5 +1,6 @@
 package com.k2thend.supervisor.ui;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -46,15 +48,7 @@ public class ProfileFragment extends Fragment {
 
         initFirebase();
         getData();
-
-        binding.logout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                mAuth.signOut();
-                startActivity(new Intent(requireContext(), LoginActivity.class));
-                finishActivity();
-            }
-        });
+        binding.logout.setOnClickListener(v -> logout());
     }
 
 
@@ -86,7 +80,19 @@ public class ProfileFragment extends Fragment {
         }
     }
 
-
+    private  void logout(){
+        new MaterialAlertDialogBuilder(requireContext())
+                .setIcon(android.R.drawable.ic_dialog_alert)
+                .setTitle("Logout")
+                .setMessage("Are you sure! you want to logout ?")
+                .setPositiveButton("Yes", (dialog, which) -> {
+                    mAuth.signOut();
+                    startActivity(new Intent(requireContext(), LoginActivity.class));
+                    finishActivity();
+                })
+                .setNegativeButton("No", null)
+                .show();
+    }
 
     private void initFirebase() {
         mAuth = FirebaseAuth.getInstance(); // initialize the Firebase instance

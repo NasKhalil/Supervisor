@@ -6,19 +6,23 @@ public class User {
   private String mail;
   private String pwd;
   private String phone;
+  private String Url;
 
 
 
     public User() {
     }
 
-    public User(String uid, String name, String mail, String pwd, String phone) {
+    public User(String uid, String name, String mail, String pwd, String phone, String Url) {
         this.uid = uid;
         this.name = name;
         this.mail = mail;
         this.pwd = pwd;
         this.phone = phone;
+        this.Url = Url;
     }
+
+
 
     public String getUid() {
         return uid;
@@ -58,5 +62,13 @@ public class User {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public String getUrl() {
+        return Url;
+    }
+
+    public void setUrl(String url) {
+        Url = url;
     }
 }

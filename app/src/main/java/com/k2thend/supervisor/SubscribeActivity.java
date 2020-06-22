@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Patterns;
@@ -17,16 +18,19 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 import com.k2thend.supervisor.databinding.ActivitySubscribeBinding;
 import com.k2thend.supervisor.model.User;
 
 
 public class SubscribeActivity extends AppCompatActivity {
+    private static final int PICK_IMAGE_REQUEST = 1000;
     private ActivitySubscribeBinding binding;
     private FirebaseAuth mAuth;
     private FirebaseDatabase mDatabase;
     private DatabaseReference mReference;
     private FirebaseStorage mStorage;
+    private Uri filePath;
     private User mUser = new User();
 
     @Override
@@ -36,6 +40,12 @@ public class SubscribeActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
         initFirebase();
+        binding.imageAdd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                choosePicture(binding.getRoot());
+            }
+        });
         binding.sign.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,8 +62,9 @@ public class SubscribeActivity extends AppCompatActivity {
             final String pwd = binding.password.getText().toString();
             final String phone = binding.phone.getText().toString();
 
-            if (validPassword() && validEmail()) {
+            if (validPassword() && validEmail() && valideImage()) {
                 binding.progressBar.setVisibility(View.VISIBLE);
+                binding.sign.setVisibility(View.GONE);
                 mAuth.createUserWithEmailAndPassword(mail, pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -63,10 +74,12 @@ public class SubscribeActivity extends AppCompatActivity {
                             mUser.setName(name);
                             mUser.setPwd(pwd);
                             mUser.setPhone(phone);
+                            uploadImage();
                             mReference.child(mUser.getUid()).setValue(mUser).addOnCompleteListener(task1 -> {
                                 if(task1.isSuccessful())
                                 {
                                     binding.progressBar.setVisibility(View.GONE);
+                                    binding.sign.setVisibility(View.VISIBLE);
                                     startActivity(new Intent(SubscribeActivity.this, NavigationActivity.class));
                                     finish();
                                 }else
@@ -76,6 +89,7 @@ public class SubscribeActivity extends AppCompatActivity {
                             });
                         } else {
                             binding.progressBar.setVisibility(View.GONE);
+                            binding.sign.setVisibility(View.VISIBLE);
                             Snackbar.make(binding.getRoot(), task.getException().getMessage(), Snackbar.LENGTH_LONG).show();
                         }
                     }
@@ -127,9 +141,34 @@ public class SubscribeActivity extends AppCompatActivity {
         return valide;
     }
 
+    public void choosePicture(View view) {
+        Intent intent = new Intent();
+        intent.setType("image/*");
+        intent.setAction(Intent.ACTION_OPEN_DOCUMENT);
+        startActivityForResult(Intent.createChooser(intent, "Select Picture"), PICK_IMAGE_REQUEST);
+    }
+
+    private boolean valideImage() {
+        boolean valid = true;
+        if (filePath == null) {
+            valid = false;
+            Snackbar.make(binding.imageAdd, "Ajouter une Image ", Snackbar.LENGTH_LONG);
+        }
+        return valid;
+    }
+
+    private void uploadImage() {
+        StorageReference child = mStorage.getReference().child(mUser.getUid());
+        child.putFile(filePath).continueWithTask(task -> child.getDownloadUrl()).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                mUser.setUrl(task.getResult().toString());
+            }
+        });
+    }
 
 
-    private void initFirebase() {
+
+        private void initFirebase() {
         mAuth = FirebaseAuth.getInstance(); // initialize the Firebase instance
         mDatabase = FirebaseDatabase.getInstance();
         mReference = mDatabase.getReference("user");
