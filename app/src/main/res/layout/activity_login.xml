@@ -64,18 +64,19 @@
         </com.google.android.material.textfield.TextInputLayout>
 
 
-
         <Button
             android:id="@+id/login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/log_in"
-            android:textSize="16sp"
-            android:textColor="@color/white"
-            android:background="@color/colorPrimaryDark"
             android:layout_gravity="center"
             android:layout_marginTop="16dp"
-            android:layout_marginBottom="32dp"/>
+            android:layout_marginBottom="32dp"
+            android:background="@color/colorPrimaryDark"
+            android:text="@string/log_in"
+            android:textColor="@color/white"
+            android:textSize="16sp"
+            app:cornerRadius="12dp"
+            android:elevation="6dp"/>
         <TextView
             android:id="@+id/sign_in_intent"
             android:layout_width="wrap_content"

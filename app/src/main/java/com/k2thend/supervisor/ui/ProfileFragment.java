@@ -52,6 +52,7 @@ public class ProfileFragment extends Fragment {
             public void onClick(View v) {
                 mAuth.signOut();
                 startActivity(new Intent(requireContext(), LoginActivity.class));
+                finishActivity();
             }
         });
     }
@@ -77,6 +78,12 @@ public class ProfileFragment extends Fragment {
                 Log.e("error", databaseError.getMessage());
             }
         });
+    }
+
+    private void finishActivity() {
+        if(getActivity() != null) {
+            getActivity().finish();
+        }
     }
 
 

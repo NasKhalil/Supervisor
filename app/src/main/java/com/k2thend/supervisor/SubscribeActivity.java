@@ -62,18 +62,16 @@ public class SubscribeActivity extends AppCompatActivity {
                             mUser.setMail(mail);
                             mUser.setName(name);
                             mUser.setPwd(pwd);
-                            mReference.child(mUser.getUid()).setValue(mUser).addOnCompleteListener(new OnCompleteListener<Void>() {
-                                @Override
-                                public void onComplete(@NonNull Task<Void> task) {
-                                    if(task.isSuccessful())
-                                    {
-                                        binding.progressBar.setVisibility(View.GONE);
-                                        startActivity(new Intent(SubscribeActivity.this, NavigationActivity.class));
-                                        finish();
-                                    }else
-                                    {
-                                        Snackbar.make(binding.getRoot(), task.getException().getMessage(), Snackbar.LENGTH_LONG).show();
-                                    }
+                            mUser.setPhone(phone);
+                            mReference.child(mUser.getUid()).setValue(mUser).addOnCompleteListener(task1 -> {
+                                if(task1.isSuccessful())
+                                {
+                                    binding.progressBar.setVisibility(View.GONE);
+                                    startActivity(new Intent(SubscribeActivity.this, NavigationActivity.class));
+                                    finish();
+                                }else
+                                {
+                                    Snackbar.make(binding.getRoot(), task1.getException().getMessage(), Snackbar.LENGTH_LONG).show();
                                 }
                             });
                         } else {

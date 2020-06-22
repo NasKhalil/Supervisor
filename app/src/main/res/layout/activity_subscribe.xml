@@ -24,6 +24,7 @@
         android:layout_width="128dp"
         android:layout_height="128dp"
         android:layout_gravity="center"
+        app:srcCompat="@drawable/ic_baseline_add_photo_alternate_24"
         tools:srcCompat="@drawable/ic_baseline_add_photo_alternate_24" />
 
     <com.google.android.material.textfield.TextInputLayout
