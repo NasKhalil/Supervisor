@@ -6,6 +6,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.constraintlayout.motion.widget.MotionLayout;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -50,6 +51,14 @@ public class ProfileFragment extends Fragment {
         initFirebase();
         getData();
         binding.logout.setOnClickListener(v -> logout());
+
+        binding.edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                binding.profileMotionLayout.startLayoutAnimation();
+            }
+        });
+
     }
 
 
@@ -63,8 +72,7 @@ public class ProfileFragment extends Fragment {
                 binding.email.setText(mUser.getMail());
                 binding.name.setText(mUser.getName());
                 binding.phone.setText(mUser.getPhone());
-                binding.progressBar2.setVisibility(View.GONE);
-
+               // binding.progressBar2.setVisibility(View.GONE);
             }
 
             @Override

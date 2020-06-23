@@ -21,10 +21,12 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.k2thend.supervisor.databinding.ActivityLoginBinding;
+import com.k2thend.supervisor.model.User;
 
 public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
     private FirebaseAuth mAuth; // declare an instance of FirebaseAuth
+    private User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,10 +65,11 @@ public class LoginActivity extends AppCompatActivity {
                 binding.login.setVisibility(View.GONE);
                 mAuth.signInWithEmailAndPassword(mail, password)
                         .addOnCompleteListener(this, task -> {
-                            if (task.isSuccessful()){
+                            if (task.isSuccessful() ){
+
                                 binding.progressBar.setVisibility(View.GONE);
                                 binding.login.setVisibility(View.VISIBLE);
-                                startActivity( new Intent(LoginActivity.this , NavigationActivity.class));
+                                startActivity( new Intent(LoginActivity.this , MainActivity.class));
                                 finish();
                             }
                             else

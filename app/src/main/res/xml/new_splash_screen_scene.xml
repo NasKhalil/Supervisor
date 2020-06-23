@@ -8,7 +8,8 @@
         motion:constraintSetEnd="@+id/end"
         motion:constraintSetStart="@id/start"
         motion:duration="2500"
-        motion:autoTransition="animateToEnd">
+        motion:autoTransition="animateToEnd"
+        motion:pathMotionArc="startHorizontal">
     </Transition>
 
     <ConstraintSet android:id="@+id/start">

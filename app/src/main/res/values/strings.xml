@@ -4,6 +4,7 @@
     <string name="password_field">Password</string>
     <string name="confirm_pass_field">Confirm Password</string>
     <string name="name_field">Name</string>
+    <string name="phone_field">Phone</string>
     <string name="log_in">Login</string>
     <string name="log_out">Logout</string>
     <string name="sign_in">Sign In</string>

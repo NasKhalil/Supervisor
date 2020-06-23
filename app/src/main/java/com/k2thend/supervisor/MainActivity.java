@@ -55,11 +55,7 @@ public class MainActivity extends AppCompatActivity {
 
         binding.send.setOnClickListener(v -> sendData());
 
-       // binding.save.setOnClickListener(v -> saveData());
-
-
-
-
+        binding.save.setOnClickListener(v -> saveData());
 
     }
 
@@ -103,7 +99,9 @@ public class MainActivity extends AppCompatActivity {
 
     private void sendData(){
 
-        mData.setQuestion("hello");
+        Toast.makeText(MainActivity.this, "Data sent", Toast.LENGTH_SHORT).show();
+
+        /*mData.setQuestion("hello");
         mReference.child("data").child(mAuth.getUid()).setValue(mData).addOnCompleteListener(task -> {
             if (task.isSuccessful())
             {
@@ -112,7 +110,7 @@ public class MainActivity extends AppCompatActivity {
             {
                 Snackbar.make(binding.getRoot(), task.getException().getMessage(), Snackbar.LENGTH_LONG).show();
             }
-        });
+        });*/
     }
 
 

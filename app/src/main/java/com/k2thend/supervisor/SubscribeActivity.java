@@ -45,18 +45,8 @@ public class SubscribeActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
         initFirebase();
-        binding.imageAdd.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                choosePicture(binding.getRoot());
-            }
-        });
-        binding.sign.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                SubscribeActivity.this.signin();
-            }
-        });
+        binding.imageAdd.setOnClickListener(v -> choosePicture(binding.getRoot()));
+        binding.sign.setOnClickListener(v -> SubscribeActivity.this.signin());
 
     }
 
@@ -70,33 +60,30 @@ public class SubscribeActivity extends AppCompatActivity {
             if (validPassword() && validEmail() && valideImage()) {
                 binding.progressBar.setVisibility(View.VISIBLE);
                 binding.sign.setVisibility(View.GONE);
-                mAuth.createUserWithEmailAndPassword(mail, pwd).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            mUser.setUid(mAuth.getCurrentUser().getUid());
-                            mUser.setMail(mail);
-                            mUser.setName(name);
-                            mUser.setPwd(pwd);
-                            mUser.setPhone(phone);
-                            uploadImage();
-                            mReference.child(mUser.getUid()).setValue(mUser).addOnCompleteListener(task1 -> {
-                                if(task1.isSuccessful())
-                                {
-                                    binding.progressBar.setVisibility(View.GONE);
-                                    binding.sign.setVisibility(View.VISIBLE);
-                                    startActivity(new Intent(SubscribeActivity.this, NavigationActivity.class));
-                                    finish();
-                                }else
-                                {
-                                    Snackbar.make(binding.getRoot(), task1.getException().getMessage(), Snackbar.LENGTH_LONG).show();
-                                }
-                            });
-                        } else {
-                            binding.progressBar.setVisibility(View.GONE);
-                            binding.sign.setVisibility(View.VISIBLE);
-                            Snackbar.make(binding.getRoot(), task.getException().getMessage(), Snackbar.LENGTH_LONG).show();
-                        }
+                mAuth.createUserWithEmailAndPassword(mail, pwd).addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        mUser.setUid(mAuth.getCurrentUser().getUid());
+                        mUser.setMail(mail);
+                        mUser.setName(name);
+                        mUser.setPwd(pwd);
+                        mUser.setPhone(phone);
+                        uploadImage();
+                        mReference.child(mUser.getUid()).setValue(mUser).addOnCompleteListener(task1 -> {
+                            if(task1.isSuccessful())
+                            {
+                                binding.progressBar.setVisibility(View.GONE);
+                                binding.sign.setVisibility(View.VISIBLE);
+                                startActivity(new Intent(SubscribeActivity.this, NavigationActivity.class));
+                                finish();
+                            }else
+                            {
+                                Snackbar.make(binding.getRoot(), task1.getException().getMessage(), Snackbar.LENGTH_LONG).show();
+                            }
+                        });
+                    } else {
+                        binding.progressBar.setVisibility(View.GONE);
+                        binding.sign.setVisibility(View.VISIBLE);
+                        Snackbar.make(binding.getRoot(), task.getException().getMessage(), Snackbar.LENGTH_LONG).show();
                     }
                 });
             }
