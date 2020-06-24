@@ -69,7 +69,7 @@
                 />
 
             <RadioGroup
-                android:id="@+id/quest"
+                android:id="@+id/pLunchTime"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -104,13 +104,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/present_lunch"
+                android:text="@string/present_Evening"
                 android:layout_weight="3"
                 android:layout_gravity="center"
                 />
 
             <RadioGroup
-                android:id="@+id/quest1"
+                android:id="@+id/pEvening"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -137,201 +137,6 @@
             android:layout_margin="6dp"/>
     </LinearLayout>
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="12dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/title_two"
-            android:textSize="24dp"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#000"
-            android:layout_margin="6dp"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="8dp"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/present_lunch"
-                android:layout_weight="3"
-                android:layout_gravity="center"
-                />
-
-            <RadioGroup
-                android:id="@+id/quest4"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="YES"
-                    />
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="NO"
-                    />
-            </RadioGroup>
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/gray"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="8dp"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/present_lunch"
-                android:layout_weight="3"
-                android:layout_gravity="center"
-                />
-
-            <RadioGroup
-                android:id="@+id/quest5"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="YES"
-                    />
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="NO"
-                    />
-            </RadioGroup>
-
-        </LinearLayout>
-
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#000"
-            android:layout_margin="6dp"/>
-    </LinearLayout>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="12dp">
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/title_three"
-            android:textSize="24dp"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#000"
-            android:layout_margin="6dp"/>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="8dp"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/present_lunch"
-                android:layout_weight="3"
-                android:layout_gravity="center"
-                />
-
-            <RadioGroup
-                android:id="@+id/quest6"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="YES"
-                    />
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="NO"
-                    />
-            </RadioGroup>
-
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/gray"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="8dp"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/present_lunch"
-                android:layout_weight="3"
-                android:layout_gravity="center"
-                />
-
-            <RadioGroup
-                android:id="@+id/quest7"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="YES"
-                    />
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="NO"
-                    />
-            </RadioGroup>
-
-        </LinearLayout>
-
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#000"
-            android:layout_margin="6dp"/>
-    </LinearLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -377,6 +182,7 @@
                     />
 
                 <ImageView
+                    android:id="@+id/imgAdd"
                     android:layout_gravity="center"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -389,7 +195,7 @@
             </LinearLayout>
 
             <RadioGroup
-                android:id="@+id/quest10"
+                android:id="@+id/checkoutArea"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
@@ -408,198 +214,7 @@
 
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/gray"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"/>
 
-        <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="8dp"
-        >
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:layout_marginRight="12dp"
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/food_area"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                />
-
-            <ImageView
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#00FFFFFF"
-                android:textColor="#00FFFFFF"
-                android:textColorHighlight="#00FFFFFF"
-                android:textColorHint="#00FFFFFF"
-                android:src="@drawable/baseline_camera_alt_black_36"
-                android:layout_marginLeft="12dp"/>
-        </LinearLayout>
-
-        <RadioGroup
-            android:id="@+id/quest12"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="YES"
-                />
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="NO"
-                />
-        </RadioGroup>
-
-    </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/gray"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"/>
-
-
-        <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="8dp"
-        >
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:layout_marginRight="12dp"
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/non_food_area"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                />
-
-            <ImageView
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#00FFFFFF"
-                android:textColor="#00FFFFFF"
-                android:textColorHighlight="#00FFFFFF"
-                android:textColorHint="#00FFFFFF"
-                android:src="@drawable/baseline_camera_alt_black_36"
-                android:layout_marginLeft="12dp"/>
-        </LinearLayout>
-
-        <RadioGroup
-            android:id="@+id/quest11"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="YES"
-                />
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="NO"
-                />
-        </RadioGroup>
-
-    </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/gray"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"/>
-
-        <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:padding="8dp"
-        >
-        <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:layout_weight="1"
-            android:layout_gravity="center"
-            android:layout_marginRight="12dp"
-            >
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/Pres_cleaning_sup"
-                android:layout_gravity="center"
-                android:layout_weight="1"
-                />
-
-            <ImageView
-                android:layout_gravity="center"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#00FFFFFF"
-                android:textColor="#00FFFFFF"
-                android:textColorHighlight="#00FFFFFF"
-                android:textColorHint="#00FFFFFF"
-                android:src="@drawable/baseline_camera_alt_black_36"
-                android:layout_marginLeft="12dp"/>
-        </LinearLayout>
-
-        <RadioGroup
-            android:id="@+id/quest9"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            >
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="YES"
-                />
-            <RadioButton
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:hint="NO"
-                />
-        </RadioGroup>
-
-    </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#000"
-            android:layout_margin="6dp"/>
     </LinearLayout>
 
 
@@ -615,6 +230,7 @@
             android:layout_weight="2"
             android:text="Number of cleaning staff"/>
         <EditText
+            android:id="@+id/nbOfCleaningStuff"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
@@ -623,6 +239,7 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/remarqs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -637,6 +254,7 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
+        android:id="@+id/problems"
         android:layout_height="wrap_content"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_margin="12dp"
