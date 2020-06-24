@@ -20,12 +20,19 @@ import com.google.android.material.snackbar.Snackbar;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 import com.k2thend.supervisor.databinding.ActivityLoginBinding;
 import com.k2thend.supervisor.model.User;
 
 public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
     private FirebaseAuth mAuth; // declare an instance of FirebaseAuth
+    private DatabaseReference mRefrence;
+    private FirebaseDatabase mDatabase;
     private User user;
 
     @Override
@@ -35,13 +42,12 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+        initFireBase();
 
-        mAuth = FirebaseAuth.getInstance(); // initialize the Firebase instance
 
         binding.login.setOnClickListener(v -> LoginActivity.this.Login());
 
         binding.signInIntent.setOnClickListener(v -> LoginActivity.this.startActivity(new Intent(LoginActivity.this, SubscribeActivity.class)));
-
 
     }
 
@@ -66,11 +72,31 @@ public class LoginActivity extends AppCompatActivity {
                 mAuth.signInWithEmailAndPassword(mail, password)
                         .addOnCompleteListener(this, task -> {
                             if (task.isSuccessful() ){
+                                Log.e("uid",task.getResult().getUser().getUid());
+                                String uid = task.getResult().getUser().getUid();
+                                mRefrence.child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                                        User user = dataSnapshot.getValue(User.class);
+                                        if (user.getType() == 1){
+                                            binding.progressBar.setVisibility(View.GONE);
+                                            binding.login.setVisibility(View.VISIBLE);
+                                            startActivity( new Intent(LoginActivity.this , NavigationActivity.class));
+                                            finish();
+                                        }else {
+                                            binding.progressBar.setVisibility(View.GONE);
+                                            binding.login.setVisibility(View.VISIBLE);
+                                            startActivity( new Intent(LoginActivity.this , MainActivity.class));
+                                            finish();
+                                        }
 
-                                binding.progressBar.setVisibility(View.GONE);
-                                binding.login.setVisibility(View.VISIBLE);
-                                startActivity( new Intent(LoginActivity.this , MainActivity.class));
-                                finish();
+                                    }
+
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                                    }
+                                });
                             }
                             else
                             {
@@ -126,6 +152,15 @@ public class LoginActivity extends AppCompatActivity {
             binding.password.setError("6 caracters minimun ");
         }
         return  valide ;
+    }
+
+    private void initFireBase() {
+        mAuth = FirebaseAuth.getInstance();
+        //get la base de donné
+        mDatabase = FirebaseDatabase.getInstance();
+        // le curseur
+        mRefrence = mDatabase.getReference("user");
+
     }
 
 

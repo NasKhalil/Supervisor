@@ -104,9 +104,9 @@ public class SplashScreenActivity extends AppCompatActivity {
 
     private void initFireBase() {
         mAuth = FirebaseAuth.getInstance();
-        //get la base de donné
+
         mDatabase = FirebaseDatabase.getInstance();
-        // le curseur
+
         mRefrence = mDatabase.getReference("user");
 
     }
