@@ -4,8 +4,10 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.nfc.Tag;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -66,7 +68,7 @@ public class LoginActivity extends AppCompatActivity {
                 mAuth.signInWithEmailAndPassword(mail, password)
                         .addOnCompleteListener(this, task -> {
                             if (task.isSuccessful() ){
-
+                                session(getApplicationContext(), mail);
                                 binding.progressBar.setVisibility(View.GONE);
                                 binding.login.setVisibility(View.VISIBLE);
                                 startActivity( new Intent(LoginActivity.this , MainActivity.class));
@@ -90,6 +92,13 @@ public class LoginActivity extends AppCompatActivity {
         }
 
  */
+
+    }
+
+    private void session(Context context,String mail){
+        SharedPreferences sharedPreferences = context.getSharedPreferences("mySharedPref", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        editor.putString("mail",mail).apply();
 
     }
 

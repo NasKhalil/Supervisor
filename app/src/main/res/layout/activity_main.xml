@@ -239,7 +239,6 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/remarqs"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
@@ -247,6 +246,7 @@
         android:hint="Remarks"
         >
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/remarqs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lines="4"/>
@@ -254,13 +254,13 @@
 
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
-        android:id="@+id/problems"
         android:layout_height="wrap_content"
         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_margin="12dp"
         android:hint="Customer Problems"
         >
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/problems"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:lines="4"/>

@@ -3,23 +3,21 @@ package com.k2thend.supervisor;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
-
 import android.Manifest;
-import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.pdf.PdfDocument;
 import android.os.Bundle;
 import android.os.Environment;
-import android.os.Handler;
-import android.print.PrintAttributes;
 import android.util.Log;
 import android.view.View;
+import android.widget.RadioButton;
 import android.widget.Toast;
-
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -27,23 +25,19 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
-import com.google.firebase.database.annotations.NotNull;
 import com.k2thend.supervisor.databinding.ActivityMainBinding;
 import com.k2thend.supervisor.model.User;
-import com.uttampanchasara.pdfgenerator.CreatePdf;
-
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.net.URI;
+import java.util.Calendar;
+import java.util.Date;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
     private FirebaseAuth mAuth;
     private DatabaseReference mReference;
     private FirebaseDatabase mDatabase;
-
 
 
     @Override
@@ -53,6 +47,7 @@ public class MainActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
         initFirebase();
+        session(MainActivity.this);
         getData();
 
         ActivityCompat.requestPermissions(this, new String[]{
@@ -69,7 +64,13 @@ public class MainActivity extends AppCompatActivity {
         binding.save.setOnClickListener(v -> saveData());
 
     }
+    private void session(Context context){
+        SharedPreferences sharedPreferences = context.getSharedPreferences("mySharedPref", MODE_PRIVATE);
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+        String mail = sharedPreferences.getString("mail","");
+        Toast.makeText(context, mail, Toast.LENGTH_SHORT).show();
 
+    }
 
     @Override
     public void onBackPressed() {
@@ -87,7 +88,6 @@ public class MainActivity extends AppCompatActivity {
                 .setNegativeButton("No", null)
                 .show();
     }
-
 
     private void getData(){
         mReference.child("user").child(mAuth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -125,31 +125,6 @@ public class MainActivity extends AppCompatActivity {
         });*/
     }
 
-    private void pdf(){
-
-        new CreatePdf(MainActivity.this)
-                .setPdfName("FirstPdf")
-                .openPrintDialog(true)
-                .setContentBaseUrl(null)
-                .setPageSize(PrintAttributes.MediaSize.ISO_A4)
-                .setContent("test test test")
-                .setFilePath(Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DCIM) + "/MyPdf.pdf")
-                .setCallbackListener(new CreatePdf.PdfCallbackListener() {
-                    @Override
-                    public void onFailure(@NotNull String s) {
-                        // handle error
-                        Toast.makeText(MainActivity.this, "error "+ s, Toast.LENGTH_SHORT).show();
-                    }
-
-                    @Override
-                    public void onSuccess(@NotNull String s) {
-                        // do your stuff here
-                        Toast.makeText(MainActivity.this, "success " + s, Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .create();
-    }
-
     private void createPdfDoc() {
         PdfDocument pdfDocument = new PdfDocument();
         Paint mPaint = new Paint();
@@ -158,13 +133,19 @@ public class MainActivity extends AppCompatActivity {
         PdfDocument.Page mPage = pdfDocument.startPage(mPageInfo);
 
         Canvas canvas = mPage.getCanvas();
-        canvas.drawText("hello fuckin pdf", 40, 50, mPaint);
+
+
+        canvas.drawText("hello fuckin pdf 22", 40, 50, mPaint);
+        String problem = binding.problems.getText().toString();
+        canvas.drawText(problem, 40, 100, mPaint);
+        String datee =  android.text.format.DateFormat.format("yyyy-MM-dd hh:mm", new java.util.Date()).toString();
+        canvas.drawText(datee, 40, 150, mPaint);
+
 
         //File file = new File(Environment.getDataDirectory(), File.separator + "myFuckingPdf.pdf");
 
-        File file = new File(Environment.DIRECTORY_DOCUMENTS, "test.pdf");
+        File file = new File(Environment.getExternalStorageDirectory().getAbsolutePath(),File.separator+ "test.pdf");
         pdfDocument.finishPage(mPage);
-
 
         try {
             pdfDocument.writeTo(new FileOutputStream(file));
@@ -174,9 +155,9 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+
     }
-
-
 
 
     private void initFirebase() {
