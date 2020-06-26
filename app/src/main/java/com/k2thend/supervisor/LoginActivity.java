@@ -24,11 +24,12 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.k2thend.supervisor.databinding.ActivityLoginBinding;
 import com.k2thend.supervisor.model.User;
+import com.k2thend.supervisor.utils.SessionManager;
 
 public class LoginActivity extends AppCompatActivity {
     private ActivityLoginBinding binding;
     private FirebaseAuth mAuth; // declare an instance of FirebaseAuth
-    private User user;
+    private User user;SessionManager sessionManager ;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +38,8 @@ public class LoginActivity extends AppCompatActivity {
         binding = ActivityLoginBinding.inflate(getLayoutInflater());
         View view = binding.getRoot();
         setContentView(view);
+        sessionManager = new SessionManager(getApplicationContext());
+
 
         mAuth = FirebaseAuth.getInstance(); // initialize the Firebase instance
 
@@ -68,7 +71,6 @@ public class LoginActivity extends AppCompatActivity {
                 mAuth.signInWithEmailAndPassword(mail, password)
                         .addOnCompleteListener(this, task -> {
                             if (task.isSuccessful() ){
-                                session(getApplicationContext(), mail);
                                 binding.progressBar.setVisibility(View.GONE);
                                 binding.login.setVisibility(View.VISIBLE);
                                 startActivity( new Intent(LoginActivity.this , MainActivity.class));
@@ -85,7 +87,7 @@ public class LoginActivity extends AppCompatActivity {
 
 
 /*
-// TODO: FireBase Login
+// TODO: FireBase Login {
                 startActivity( new Intent(LoginActivity.this , MainActivity.class));
                 finish();
             }

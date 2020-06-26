@@ -6,296 +6,291 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     tools:context=".MainActivity">
-<LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:layout_margin="8dp">
-    <Button
-        android:id="@+id/logout"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/log_out"
-        android:layout_gravity="right"
-        android:layout_marginRight="16dp"
-        android:layout_marginTop="16dp"
-        />
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/main_title"
-        android:textSize="24sp"
-        android:layout_gravity="center"/>
-
-    <TextView
-        android:id="@+id/user"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="user"
-        android:textSize="24sp"
-        android:layout_gravity="center"/>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="12dp">
+        android:layout_margin="8dp"
+        android:orientation="vertical">
+
+        <Button
+            android:id="@+id/logout"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="end"
+            android:layout_marginTop="16dp"
+            android:layout_marginRight="16dp"
+            android:text="@string/log_out" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="@string/title_one"
-            android:textSize="24dp"/>
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#000"
-            android:layout_margin="6dp"/>
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="@string/main_title"
+            android:textSize="24sp" />
+
+        <TextView
+            android:id="@+id/user"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp"
+            android:text="user"
+            android:textSize="24sp" />
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="8dp"
-            >
+            android:layout_marginTop="12dp"
+            android:orientation="vertical">
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/present_lunch"
-                android:layout_weight="3"
-                android:layout_gravity="center"
-                />
+                android:text="@string/title_one"
+                android:textSize="24dp" />
 
-            <RadioGroup
-                android:id="@+id/pLunchTime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="YES"
-                    />
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="NO"
-                    />
-            </RadioGroup>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_margin="6dp"
+                android:background="#000" />
 
-        </LinearLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="@color/gray"
-            android:layout_marginLeft="24dp"
-            android:layout_marginRight="24dp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="8dp"
-            >
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/present_Evening"
-                android:layout_weight="3"
-                android:layout_gravity="center"
-                />
-
-            <RadioGroup
-                android:id="@+id/pEvening"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                >
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="YES"
-                    />
-                <RadioButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:hint="NO"
-                    />
-            </RadioGroup>
-
-        </LinearLayout>
-
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#000"
-            android:layout_margin="6dp"/>
-    </LinearLayout>
-
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/second_title"
-        android:textSize="24sp"
-        android:layout_gravity="center"
-        android:textColor="@color/red"
-        android:layout_margin="24dp"/>
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="2dp"
-            android:background="#000"
-            android:layout_margin="6dp"/>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:padding="8dp"
-            >
             <LinearLayout
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                android:layout_weight="1"
-                android:layout_gravity="center"
-                android:layout_marginRight="12dp"
-                >
+                android:padding="8dp">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="@string/checkout_area"
                     android:layout_gravity="center"
-                    android:layout_weight="1"
-                    />
+                    android:layout_weight="3"
+                    android:text="@string/present_lunch" />
 
-                <ImageView
-                    android:id="@+id/imgAdd"
-                    android:layout_gravity="center"
+                <RadioGroup
+                    android:id="@+id/pLunchTime"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="#00FFFFFF"
-                    android:textColor="#00FFFFFF"
-                    android:textColorHighlight="#00FFFFFF"
-                    android:textColorHint="#00FFFFFF"
-                    android:src="@drawable/baseline_camera_alt_black_36"
-                    android:layout_marginLeft="12dp"/>
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="YES" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="NO" />
+                </RadioGroup>
+
             </LinearLayout>
 
-            <RadioGroup
-                android:id="@+id/checkoutArea"
-                android:layout_width="wrap_content"
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_marginLeft="24dp"
+                android:layout_marginRight="24dp"
+                android:background="@color/gray" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="horizontal"
-                >
-                <RadioButton
+                android:padding="8dp">
+
+                <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="YES"
-                    />
-                <RadioButton
+                    android:layout_gravity="center"
+                    android:layout_weight="3"
+                    android:text="@string/present_Evening" />
+
+                <RadioGroup
+                    android:id="@+id/pEvening"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:hint="NO"
-                    />
-            </RadioGroup>
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="YES" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="NO" />
+                </RadioGroup>
+
+            </LinearLayout>
+
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_margin="6dp"
+                android:background="#000" />
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_margin="24dp"
+            android:text="@string/second_title"
+            android:textColor="@color/red"
+            android:textSize="24sp" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="2dp"
+                android:layout_margin="6dp"
+                android:background="#000" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginRight="12dp"
+                    android:layout_weight="1"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_weight="1"
+                        android:text="@string/checkout_area" />
+
+                    <ImageView
+                        android:id="@+id/imgAdd"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginLeft="12dp"
+                        android:background="#00FFFFFF"
+                        android:src="@drawable/baseline_camera_alt_black_36"
+                        android:textColor="#00FFFFFF"
+                        android:textColorHighlight="#00FFFFFF"
+                        android:textColorHint="#00FFFFFF" />
+                </LinearLayout>
+
+                <RadioGroup
+                    android:id="@+id/checkoutArea"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="YES" />
+
+                    <RadioButton
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:hint="NO" />
+                </RadioGroup>
+
+            </LinearLayout>
+
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="2"
+                android:text="Number of cleaning staff" />
+
+            <EditText
+                android:id="@+id/nbOfCleaningStuff"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:inputType="number" />
+        </LinearLayout>
+
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:hint="Remarks">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/remarqs"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="4" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:hint="Customer Problems">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/problems"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:lines="4" />
+        </com.google.android.material.textfield.TextInputLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/save"
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="SAVE"
+                app:icon="@drawable/baseline_save_black_24" />
+
+            <Button
+                android:id="@+id/send"
+                style="@style/Widget.MaterialComponents.Button.Icon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="16dp"
+                android:text="SEND"
+                app:icon="@drawable/baseline_local_post_office_black_24" />
 
         </LinearLayout>
 
 
     </LinearLayout>
-
-
-
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="2"
-            android:text="Number of cleaning staff"/>
-        <EditText
-            android:id="@+id/nbOfCleaningStuff"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:inputType="number"/>
-    </LinearLayout>
-
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_margin="12dp"
-        android:hint="Remarks"
-        >
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/remarqs"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:lines="4"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-    <com.google.android.material.textfield.TextInputLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
-        android:layout_margin="12dp"
-        android:hint="Customer Problems"
-        >
-        <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/problems"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:lines="4"/>
-    </com.google.android.material.textfield.TextInputLayout>
-
-
-   <LinearLayout
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:orientation="horizontal"
-       android:gravity="center">
-
-       <Button
-           android:id="@+id/save"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="SAVE"
-           app:icon="@drawable/baseline_save_black_24"
-           style="@style/Widget.MaterialComponents.Button.Icon"
-           android:layout_margin="16dp"
-           />
-
-       <Button
-           android:id="@+id/send"
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text="SEND"
-           app:icon="@drawable/baseline_local_post_office_black_24"
-           style="@style/Widget.MaterialComponents.Button.Icon"
-           android:layout_margin="16dp"
-           />
-
-   </LinearLayout>
-
-
-</LinearLayout>
 
 </ScrollView>

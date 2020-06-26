@@ -27,6 +27,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 import com.k2thend.supervisor.databinding.ActivityMainBinding;
 import com.k2thend.supervisor.model.User;
+import com.k2thend.supervisor.utils.SessionManager;
+
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference mReference;
     private FirebaseDatabase mDatabase;
+    SessionManager sessionManager;
 
 
     @Override
@@ -47,8 +50,10 @@ public class MainActivity extends AppCompatActivity {
         View view = binding.getRoot();
         setContentView(view);
         initFirebase();
-        session(MainActivity.this);
         getData();
+        sessionManager = new SessionManager(getApplicationContext());
+        sessionManager.getUserName();
+        Log.e("name", sessionManager.getUserName());
 
         ActivityCompat.requestPermissions(this, new String[]{
                 Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, PackageManager.PERMISSION_GRANTED);
@@ -60,15 +65,7 @@ public class MainActivity extends AppCompatActivity {
         });
 
         binding.send.setOnClickListener(v -> sendData());
-
         binding.save.setOnClickListener(v -> saveData());
-
-    }
-    private void session(Context context){
-        SharedPreferences sharedPreferences = context.getSharedPreferences("mySharedPref", MODE_PRIVATE);
-        SharedPreferences.Editor editor = sharedPreferences.edit();
-        String mail = sharedPreferences.getString("mail","");
-        Toast.makeText(context, mail, Toast.LENGTH_SHORT).show();
 
     }
 
@@ -83,7 +80,6 @@ public class MainActivity extends AppCompatActivity {
                     public void onClick(DialogInterface dialog, int which) {
                         finish();
                     }
-
                 })
                 .setNegativeButton("No", null)
                 .show();
@@ -95,6 +91,8 @@ public class MainActivity extends AppCompatActivity {
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User mUser = dataSnapshot.getValue(User.class);
                 binding.user.setText("welcome "+mUser.getName());
+                sessionManager.saveLoginDetails(mUser.getName(), mUser.getMail());
+                Toast.makeText(MainActivity.this, sessionManager.getUserName(), Toast.LENGTH_SHORT).show();
             }
 
             @Override
@@ -110,8 +108,14 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void sendData(){
-
+        binding.pLunchTime.clearCheck();
+        binding.pEvening.clearCheck();
+        binding.checkoutArea.clearCheck();
+        binding.nbOfCleaningStuff.getText().clear();
+        binding.remarqs.getText().clear();
+        binding.problems.getText().clear();
         Toast.makeText(MainActivity.this, "Data sent", Toast.LENGTH_SHORT).show();
+
 
         /*mData.setQuestion("hello");
         mReference.child("data").child(mAuth.getUid()).setValue(mData).addOnCompleteListener(task -> {
@@ -129,18 +133,17 @@ public class MainActivity extends AppCompatActivity {
         PdfDocument pdfDocument = new PdfDocument();
         Paint mPaint = new Paint();
 
-        PdfDocument.PageInfo mPageInfo = new PdfDocument.PageInfo.Builder(250, 400, 1).create();
+        PdfDocument.PageInfo mPageInfo = new PdfDocument.PageInfo.Builder(595, 842, 1).create();
         PdfDocument.Page mPage = pdfDocument.startPage(mPageInfo);
 
         Canvas canvas = mPage.getCanvas();
 
-
-        canvas.drawText("hello fuckin pdf 22", 40, 50, mPaint);
+        canvas.drawText(sessionManager.getUserName(),125, 10, mPaint);
+        canvas.drawText("pdf test", 40, 50, mPaint);
         String problem = binding.problems.getText().toString();
         canvas.drawText(problem, 40, 100, mPaint);
         String datee =  android.text.format.DateFormat.format("yyyy-MM-dd hh:mm", new java.util.Date()).toString();
         canvas.drawText(datee, 40, 150, mPaint);
-
 
         //File file = new File(Environment.getDataDirectory(), File.separator + "myFuckingPdf.pdf");
 
@@ -155,8 +158,6 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-
     }
 
 
