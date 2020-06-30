@@ -9,16 +9,21 @@ import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
 
+import android.widget.EditText;
 import android.widget.LinearLayout;
+import android.widget.TextView;
+import android.widget.Toast;
 
+import androidx.annotation.ColorRes;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.k2thend.supervisor.R;
 import com.k2thend.supervisor.databinding.UtilsBinding;
 
 
-public class Utils extends AppCompatActivity {
+public class Utils {
 
+    /*
     private UtilsBinding binding;
 
     @Override
@@ -51,19 +56,46 @@ public class Utils extends AppCompatActivity {
         });
     }
 
-    public View button(Context context, int color, String text, int size){
+     */
+
+    public Button button(Context context, @ColorRes int color, String text, int size){
 
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
 
 
-        Button button = new Button(this);
-        button.setBackgroundColor(color);
+        Button button = new Button(context);
+        button.setBackgroundColor(context.getResources().getColor(color));
         button.setText(text);
         button.setTextSize(size);
-        button.setText("Button created");
         button.setLayoutParams(params);
-
+        Toast.makeText(context, "button created", Toast.LENGTH_SHORT).show();
         return button;
+    }
+
+    public View textView(Context context, int color, String text, int size){
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        TextView textView = new TextView(context);
+        textView.setBackgroundColor(color);
+        textView.setText(text);
+        textView.setTextSize(size);
+        textView.setLayoutParams(params);
+        Toast.makeText(context, "text created", Toast.LENGTH_SHORT).show();
+        return textView;
+    }
+
+
+    public EditText editText(Context context, int color, String text, int size){
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+        EditText editText = new EditText(context);
+        editText.setBackgroundColor(color);
+        editText.setHint(text);
+        editText.setTextSize(size);
+        editText.setLayoutParams(params);
+        editText.setTag(text);
+        Toast.makeText(context, "text created", Toast.LENGTH_SHORT).show();
+        return editText;
     }
 
 

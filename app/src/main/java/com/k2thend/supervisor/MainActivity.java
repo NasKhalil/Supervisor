@@ -1,8 +1,10 @@
 package com.k2thend.supervisor;
 
+import androidx.annotation.ColorRes;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
+
 import android.Manifest;
 import android.content.Context;
 import android.content.DialogInterface;
@@ -16,8 +18,13 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
 import android.view.View;
+import android.widget.Button;
+import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
+import android.widget.TextView;
 import android.widget.Toast;
+
 import com.google.android.material.dialog.MaterialAlertDialogBuilder;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
@@ -28,12 +35,15 @@ import com.google.firebase.database.ValueEventListener;
 import com.k2thend.supervisor.databinding.ActivityMainBinding;
 import com.k2thend.supervisor.model.User;
 import com.k2thend.supervisor.utils.SessionManager;
+import com.k2thend.supervisor.utils.Utils;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 
 public class MainActivity extends AppCompatActivity {
     private ActivityMainBinding binding;
@@ -41,6 +51,7 @@ public class MainActivity extends AppCompatActivity {
     private DatabaseReference mReference;
     private FirebaseDatabase mDatabase;
     SessionManager sessionManager;
+    Utils utils;
 
 
     @Override
@@ -51,6 +62,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(view);
         initFirebase();
         getData();
+        utils = new Utils();
+
         sessionManager = new SessionManager(getApplicationContext());
         sessionManager.getUserName();
         Log.e("name", sessionManager.getUserName());
@@ -64,9 +77,10 @@ public class MainActivity extends AppCompatActivity {
             finish();
         });
 
+
         binding.send.setOnClickListener(v -> sendData());
         binding.save.setOnClickListener(v -> saveData());
-
+        
     }
 
     @Override
@@ -85,12 +99,12 @@ public class MainActivity extends AppCompatActivity {
                 .show();
     }
 
-    private void getData(){
+    private void getData() {
         mReference.child("user").child(mAuth.getUid()).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
                 User mUser = dataSnapshot.getValue(User.class);
-                binding.user.setText("welcome "+mUser.getName());
+                binding.user.setText("welcome " + mUser.getName());
                 sessionManager.saveLoginDetails(mUser.getName(), mUser.getMail());
                 Toast.makeText(MainActivity.this, sessionManager.getUserName(), Toast.LENGTH_SHORT).show();
             }
@@ -102,18 +116,36 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void saveData(){
+    private void saveData() {
         Toast.makeText(MainActivity.this, "Data saved", Toast.LENGTH_SHORT).show();
         createPdfDoc();
     }
 
-    private void sendData(){
+    ArrayList<EditText> tab = new ArrayList<>();
+
+    private void sendData() {
         binding.pLunchTime.clearCheck();
         binding.pEvening.clearCheck();
         binding.checkoutArea.clearCheck();
         binding.nbOfCleaningStuff.getText().clear();
         binding.remarqs.getText().clear();
         binding.problems.getText().clear();
+
+        LinearLayout ln = new LinearLayout(this);
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        ln.setLayoutParams(params);
+        EditText btn = utils.editText(getApplicationContext(), R.color.background_color, "test", 16);
+        EditText btn1 = utils.editText(getApplicationContext(), R.color.background_color, "test1", 16);
+        EditText btn2 = utils.editText(getApplicationContext(), R.color.background_color, "test2", 16);
+        //ln.addView();
+        binding.container.addView(btn);
+        binding.container.addView(btn2);
+        binding.container.addView(btn1);
+        tab.add(btn);
+        tab.add(btn1);
+        tab.add(btn2);
+
         Toast.makeText(MainActivity.this, "Data sent", Toast.LENGTH_SHORT).show();
 
 
@@ -129,7 +161,24 @@ public class MainActivity extends AppCompatActivity {
         });*/
     }
 
+    private void addView(@ColorRes int color, String text){
+        EditText test = utils.editText(getApplicationContext(), color, text, 16);
+        tab.add(test);
+        binding.container.addView(test);
+    }
+
     private void createPdfDoc() {
+
+        HashMap<String, String> map = new HashMap<>();
+
+        for (EditText editText : tab) {
+            map.put(editText.getTag().toString(), editText.getText().toString());
+        }
+
+        for (String s : map.keySet()) {
+            Log.e("TAG", "Key = " + s + " Value = " + map.get(s));
+        }
+        /*
         PdfDocument pdfDocument = new PdfDocument();
         Paint mPaint = new Paint();
 
@@ -158,6 +207,8 @@ public class MainActivity extends AppCompatActivity {
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+         */
     }
 
 
